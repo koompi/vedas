@@ -1,19 +1,14 @@
 [package]
-name = "examples"
+name = "sdk"
 version = "0.1.0"
 authors = ["mrrbrilliant <mrrbrilliantwork@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
-vedas_core = {path = "../vedas-core"}
-treexml = "0.7.0"
-iced = "0.1.1"
-
-[[example]]
-name = "todo"
-path = "todo.rs"
-
-[[example]]
-name = "counter"
-path = "counter.rs"
+yew = "0.17"
+wasm-bindgen = "0.2.68"
