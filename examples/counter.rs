@@ -15,11 +15,16 @@ impl Sandbox for Hello {
     f!(new, Self, { Self::default() });
     f_ref_self!(title, String, { String::from("Hello") });
     f_ref_mut_self!(self, update, message: HelloMessage, {
-        mtch!(message, HelloMessage, IncBtn => {
-            self.value += 1;
-        }, DecBtn => {
-            if self.value > 0 { self.value -= 1 } else { self.value = 0};
-        });
+        match message {
+            HelloMessage::IncBtn => self.value += 1,
+            HelloMessage::DecBtn => {
+                if self.value > 0 {
+                    self.value -= 1
+                } else {
+                    self.value = 0
+                }
+            }
+        }
     });
     f_ref_mut_self!(self, view, Element<HelloMessage>, {
         col!()
