@@ -9,7 +9,7 @@ macro_rules! message {
 #[macro_export]
 macro_rules! as_item {
     ($i:item) => {
-        #[derive(Debug, Clone, Copy)]
+        #[derive(Debug, Clone)]
         $i
     };
 }
