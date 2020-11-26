@@ -1,27 +1,4 @@
-[package]
-name = "vedas"
-version = "0.1.0"
-authors = ["mrrbrilliant <mrrbrilliantwork@gmail.com>"]
-edition = "2018"
+[workspace]
+members = ["vedas-core", "examples"]
+default-members = ["vedas-core"]
 
-[lib]
-name = "vedas_core"
-path = "src/lib.rs"
-
-[[example]]
-name = "todo"
-path = "examples/todo.rs"
-
-[[example]]
-name = "enum_fm"
-path = "examples/enum_from_macro.rs"
-
-[[example]]
-name = "counter"
-path = "examples/counter.rs"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-treexml = "0.7.0"
-iced = "0.1.1"

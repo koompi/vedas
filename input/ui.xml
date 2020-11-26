@@ -1,9 +1,0 @@
-<Application>
-    <View>
-        <Column>
-            <Button>Add</Button>
-            <Text>Value</Text>
-            <Button>Subtract</Button>
-        </Column>
-    </View>
-</Application>
