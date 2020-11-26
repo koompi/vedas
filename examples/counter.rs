@@ -1,19 +1,7 @@
 use iced::{button, Element, Sandbox, Settings};
 use std::io::Error;
-#[macro_use]
 use vedas_core::*;
-// #[macro_use]
-// use vedas_core::macros::application;
-// #[macro_use]
-// use vedas_core::macros::btn;
-// #[macro_use]
-// use vedas_core::macros::column;
-// #[macro_use]
-// use vedas_core::macros::message;
-// #[macro_use]
-// use vedas_core::macros::mtch;
-// #[macro_use]
-// use vedas_core::macros::text;
+
 fn main() -> Result<(), Error> {
     Hello::run(Settings::default());
     Ok(())

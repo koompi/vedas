@@ -1,9 +1,6 @@
-#![allow(dead_code, unused_variables, unused_mut, non_camel_case_types)]
-
-#[macro_use]
-use vedas_core::*;
 use iced::{button, Element, Sandbox, Settings};
 use std::io::Error;
+use vedas_core::*;
 
 fn main() -> Result<(), Error> {
     ToDoApp::run(Settings::default());
@@ -19,10 +16,8 @@ message!(ToDoAppMessage, ToggleItemMessage: usize;ToDoItemMessage);
 impl ToDoItem {
     f!(new, Self, { Self::default() });
     f_ref_mut_self!(self, update, message: ToDoItemMessage, {
-        // match message {
-        //     ToDoItemMessage::ToggleItem(b) => self.completed = b,
-        // }
-        mtch!(message, ToDoItemMessage, <ToDoItemMessage>::ToggleItem(b) => {
+        mtch!(message, ToDoItemMessage,
+        <ToDoItemMessage>::ToggleItem(b) => {
             self.completed = b
         },
         <ToDoItemMessage>::RemoveItem(b) => {}
@@ -44,7 +39,7 @@ impl Sandbox for ToDoApp {
     f!(new, Self, {
         let mut s = Self::default();
         let mut data: Vec<ToDoItem> = Vec::new();
-        for i in 0..5 {
+        for _ in 0..5 {
             let mut item = ToDoItem::default();
             item.description = "Hello".to_string();
             data.push(item)
