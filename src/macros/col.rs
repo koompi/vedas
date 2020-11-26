@@ -1,5 +1,5 @@
 #[macro_export]
-macro_rules! column {
+macro_rules! col {
     () => {
         iced::Column::new();
     };

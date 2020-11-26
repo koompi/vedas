@@ -1,7 +1,7 @@
 pub mod application;
-pub mod button;
+pub mod btn;
 pub mod checkbox;
-pub mod column;
+pub mod col;
 pub mod message;
 pub mod mtch;
 pub mod row;

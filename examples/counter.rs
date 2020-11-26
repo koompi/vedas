@@ -1,10 +1,19 @@
-#![allow(dead_code, unused_variables, unused_mut, non_camel_case_types)]
-
-#[macro_use]
-mod macros;
 use iced::{button, Element, Sandbox, Settings};
 use std::io::Error;
-
+#[macro_use]
+use vedas_core::*;
+// #[macro_use]
+// use vedas_core::macros::application;
+// #[macro_use]
+// use vedas_core::macros::btn;
+// #[macro_use]
+// use vedas_core::macros::column;
+// #[macro_use]
+// use vedas_core::macros::message;
+// #[macro_use]
+// use vedas_core::macros::mtch;
+// #[macro_use]
+// use vedas_core::macros::text;
 fn main() -> Result<(), Error> {
     Hello::run(Settings::default());
     Ok(())
@@ -25,7 +34,7 @@ impl Sandbox for Hello {
         });
     });
     f_ref_mut_self!(self, view, Element<HelloMessage>, {
-        column!()
+        col!()
             .push(btn!(&mut self.inc_state, "+").on_press(HelloMessage::IncBtn))
             .push(text!(self.value))
             .push(btn!(&mut self.dec_state, "-").on_press(HelloMessage::DecBtn))
