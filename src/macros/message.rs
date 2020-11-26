@@ -1,19 +1,15 @@
 #[macro_export]
 macro_rules! message {
-    ($name: ident) => {
-        #[derive(Debug, Clone, Copy)]
-        pub enum $name {}
-    };
-    ($name: ident, $($variants:ident),*) => {
-        #[derive(Debug, Clone, Copy)]
-        pub enum $name {
-            $($variants),*
+    ($name:ident, $($body:tt)*) => {
+        as_item! {
+            pub enum $name { $($body)* }
         }
     };
-    ($name: ident, $($variants:ident: $($type:ty);*),*) => {
+}
+#[macro_export]
+macro_rules! as_item {
+    ($i:item) => {
         #[derive(Debug, Clone, Copy)]
-        pub enum $name {
-            $($variants($($type),*)),*
-        }
+        $i
     };
 }

@@ -13,6 +13,10 @@ name = "todo"
 path = "examples/todo.rs"
 
 [[example]]
+name = "enum_fm"
+path = "examples/enum_from_macro.rs"
+
+[[example]]
 name = "counter"
 path = "examples/counter.rs"
 

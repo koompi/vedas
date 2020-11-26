@@ -8,20 +8,18 @@ fn main() -> Result<(), Error> {
 }
 // Compnent
 application!(ToDoItem: "ToDoItem" => completed: bool, description: String,remove_btn: button::State);
-message!(ToDoItemMessage, ToggleItem: bool, RemoveItem: bool);
+message!(ToDoItemMessage, ToggleItem(bool), RemoveItem(bool));
 // App
 application!(ToDoApp: "ToDoApp" => data: Vec<ToDoItem>);
-message!(ToDoAppMessage, ToggleItemMessage: usize;ToDoItemMessage);
+message!(ToDoAppMessage, ToggleItemMessage(usize, ToDoItemMessage));
 
 impl ToDoItem {
     f!(new, Self, { Self::default() });
     f_ref_mut_self!(self, update, message: ToDoItemMessage, {
-        mtch!(message, ToDoItemMessage,
-        <ToDoItemMessage>::ToggleItem(b) => {
-            self.completed = b
-        },
-        <ToDoItemMessage>::RemoveItem(b) => {}
-        )
+        match message {
+            ToDoItemMessage::ToggleItem(b) => self.completed = b,
+            ToDoItemMessage::RemoveItem(_) => {}
+        }
     });
     f_ref_mut_self!(self, view, Element<ToDoItemMessage>, {
         row!()
@@ -49,17 +47,16 @@ impl Sandbox for ToDoApp {
     });
     f_ref_self!(title, String, { String::from("Hello") });
     f_ref_mut_self!(self, update, message: ToDoAppMessage, {
-        mtch!(message, ToDoAppMessage, <ToDoAppMessage>::ToggleItemMessage(i,m) => {
-            mtch!(m, ToDoItemMessage, <ToDoItemMessage>::ToggleItem(b) => {
-                if let Some(item) = self.data.get_mut(i) {
-                    item.update(m);
+        match message {
+            ToDoAppMessage::ToggleItemMessage(i, m) => match m {
+                ToDoItemMessage::ToggleItem(_) => {
+                    self.data.get_mut(i).unwrap().update(m);
+                }
+                ToDoItemMessage::RemoveItem(_) => {
+                    self.data.remove(i);
                 }
             },
-            <ToDoItemMessage>::RemoveItem(b) => {
-                self.data.remove(i);
-            }
-        )
-        })
+        }
     });
     f_ref_mut_self!(self, view, Element<ToDoAppMessage>, {
         self.data
