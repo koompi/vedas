@@ -7,10 +7,10 @@ fn main() -> Result<(), Error> {
     Ok(())
 }
 // Compnent
-application!(ToDoItem: "ToDoItem" => completed: bool, description: String,remove_btn: button::State);
+component!(ToDoItem: "ToDoItem" => completed: bool, description: String,remove_btn: button::State);
 message!(ToDoItemMessage, ToggleItem(bool), RemoveItem(bool));
 // App
-application!(ToDoApp: "ToDoApp" => data: Vec<ToDoItem>, input_state: text_input::State, input_value: String, add_btn: button::State);
+component!(ToDoApp: "ToDoApp" => data: Vec<ToDoItem>, input_state: text_input::State, input_value: String, add_btn: button::State);
 message!(
     ToDoAppMessage,
     ToggleItemMessage(usize, ToDoItemMessage),

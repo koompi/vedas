@@ -1,7 +1,7 @@
-pub mod application;
 pub mod btn;
 pub mod checkbox;
 pub mod col;
+pub mod component;
 pub mod container;
 pub mod length;
 pub mod message;

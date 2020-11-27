@@ -7,7 +7,7 @@ fn main() -> Result<(), Error> {
     Ok(())
 }
 
-application!(Hello: "Hello" => value: u64, inc_state: button::State, dec_state: button::State);
+component!(Hello: "Hello" => value: u64, inc_state: button::State, dec_state: button::State);
 message!(HelloMessage, IncBtn, DecBtn);
 
 impl Sandbox for Hello {

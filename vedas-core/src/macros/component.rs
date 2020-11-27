@@ -1,5 +1,5 @@
 #[macro_export]
-macro_rules! application {
+macro_rules! component {
     // ($($element: ident: $ty: ty),*)
     // loop over arguments seperated by comma
     ($name: ident: $arg:expr => $($element: ident: $ty: ty),* ) =>
