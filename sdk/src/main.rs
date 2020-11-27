@@ -1,6 +1,6 @@
 pub mod app;
 
-use iced::{Application, Error, Settings};
+use iced::{Error, Sandbox, Settings};
 
 fn main() -> Result<(), Error> {
     app::VedasSDK::run(Settings::default())

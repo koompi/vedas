@@ -7,5 +7,6 @@ pub mod length;
 pub mod message;
 pub mod row;
 pub mod style;
+pub mod svg;
 pub mod text;
 pub mod text_input;
