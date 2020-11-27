@@ -6,5 +6,6 @@ pub mod container;
 pub mod length;
 pub mod message;
 pub mod row;
+pub mod style;
 pub mod text;
 pub mod text_input;

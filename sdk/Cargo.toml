@@ -8,3 +8,4 @@ edition = "2018"
 
 [dependencies]
 iced = "0.2.0"
+vedas_core = {path = "../vedas-core"}

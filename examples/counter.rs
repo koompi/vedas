@@ -13,7 +13,7 @@ message!(HelloMessage, IncBtn, DecBtn);
 impl Sandbox for Hello {
     type Message = HelloMessage;
     f!(new, Self, { Self::default() });
-    f_ref_self!(title, String, { String::from("Hello") });
+    f_ref_self!(self, title, String, { String::from("Hello") });
     f_ref_mut_self!(self, update, message: HelloMessage, {
         match message {
             HelloMessage::IncBtn => self.value += 1,

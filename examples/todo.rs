@@ -59,7 +59,7 @@ impl Sandbox for ToDoApp {
         s.data = data;
         s
     });
-    f_ref_self!(title, String, { String::from("Hello") });
+    f_ref_self!(self, title, String, { String::from("Hello") });
     f_ref_mut_self!(self, update, message: ToDoAppMessage, {
         match message {
             ToDoAppMessage::ToggleItemMessage(i, m) => match m {

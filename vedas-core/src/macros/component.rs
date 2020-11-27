@@ -62,17 +62,17 @@ macro_rules! f_mut_self {
 
 #[macro_export]
 macro_rules! f_ref_self {
-    ($fn_name:ident) => {
-        fn $fn_name(&self) {}
+    ($self:ident, $fn_name:ident) => {
+        fn $fn_name(&$self) {}
     };
-    ($fn_name:ident, $($fn_args: ident: $ty: ty),*, $body: block) => {
-        fn $fn_name(&self, $($fn_args: $ty),*) $body
+    ($self:ident, $fn_name:ident, $($fn_args: ident: $ty: ty),*, $body: block) => {
+        fn $fn_name(&$self, $($fn_args: $ty),*) $body
     };
-    ($fn_name:ident, $return_type:ty, $body: block) => {
-        fn $fn_name(&self) -> $return_type $body
+    ($self:ident, $fn_name:ident, $return_type:ty, $body: block) => {
+        fn $fn_name(&$self) -> $return_type { $body }
     };
-    ($fn_name:ident, $return_type:ty, $($fn_args: ident: $ty: ty),*, $body: block) => {
-        fn $fn_name(&self, $($fn_args: $ty),*) -> $return_type $body
+    ($self:ident, $fn_name:ident, $return_type:ty, $($fn_args: ident: $ty: ty),*, $body: block) => {
+        fn $fn_name(&$self, $($fn_args: $ty),*) -> $return_type $body
     }
 }
 

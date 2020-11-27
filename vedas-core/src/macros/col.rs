@@ -3,7 +3,7 @@ macro_rules! col {
     () => {
         iced::Column::new();
     };
-    ($($args:expr),*) => {{
-        iced::Column::new()
-    }};
+    ($w:expr) => {
+        iced::Column::new().width($w)
+    };
 }
