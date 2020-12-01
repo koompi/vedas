@@ -8,7 +8,7 @@ edition = "2018"
 [dependencies]
 vedas_core = {path = "../vedas-core"}
 treexml = "0.7.0"
-iced = "0.1.1"
+iced = "0.2.0"
 
 [[example]]
 name = "todo"
@@ -17,3 +17,7 @@ path = "todo.rs"
 [[example]]
 name = "counter"
 path = "counter.rs"
+
+[[example]]
+name = "select_list"
+path = "select_list.rs"
