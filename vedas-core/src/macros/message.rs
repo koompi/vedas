@@ -2,7 +2,12 @@
 macro_rules! message {
     ($name:ident, $($body:tt)*) => {
         as_item! {
-            pub enum $name { $($body)* }
+            enum $name { $($body)* }
+        }
+    };
+    ($v:vis $name:ident, $($body:tt)*) => {
+        as_item! {
+            $v enum $name { $($body)* }
         }
     };
 }

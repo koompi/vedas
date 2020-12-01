@@ -1,36 +1,21 @@
-use iced::{button::State as BtnState, Color, Sandbox, Svg};
+use iced::{button::State as BtnState, Color, Element, Sandbox, Svg};
 use vedas_core::*;
-#[derive(Debug, Clone, Default)]
-pub struct VedasSDK {
-    menu_btn: BtnState,
-    menu_state: bool,
-}
 
-#[derive(Debug, Clone)]
-pub enum VedasMsg {
-    ToggleMenu,
-}
+component!(VedasSDK: "Hello" => menu_state: bool, menu_btn: BtnState);
+message!(pub VedasMsg, ToggleMenu);
 
 impl Sandbox for VedasSDK {
     type Message = VedasMsg;
-
-    fn new() -> Self {
-        Self::default()
-    }
-
-    fn title(&self) -> String {
-        String::from("Vedas SDK")
-    }
-
-    fn update(&mut self, message: Self::Message) {
+    f!(new, Self, { Self::default() });
+    f_ref_self!(self, title, String, { String::from("Hello") });
+    f_ref_mut_self!(self, update, message: VedasMsg, {
         match message {
             VedasMsg::ToggleMenu => self.menu_state = !self.menu_state,
         }
-    }
+    });
 
-    fn view(&mut self) -> iced::Element<'_, Self::Message> {
-        println!("{}", self.menu_state);
-        let header_contnr = container!(
+    f_ref_mut_self!(self, view, Element<VedasMsg>, {
+        let header_container = container!(
             fill!(),
             units!(40),
             col!(fill!()).push(
@@ -54,12 +39,7 @@ impl Sandbox for VedasSDK {
             col!(fill!()).push(text!("Left sidebar"))
         )
         .style(MenuContainer);
-        let rsb_container = container!(
-            units!(300),
-            fill!(),
-            col!(fill!()).push(text!("Right sidebar"))
-        )
-        .style(MenuContainer);
+        let rsb_container = container!(units!(300), fill!(), col!(fill!())).style(MenuContainer);
         let main_area = container!(fill!(), fill!(), col!(fill!()).push(text!("Main area")));
         let body_row = if self.menu_state {
             row!(fill!())
@@ -70,10 +50,10 @@ impl Sandbox for VedasSDK {
             row!(fill!()).push(main_area).push(rsb_container)
         };
 
-        let main_column = col!().push(header_contnr).push(body_row);
+        let main_column = col!().push(header_container).push(body_row);
         let main_container = container!(fill!(), main_column);
         main_container.into()
-    }
+    });
 }
 
 style_container!(HeaderContainer {
