@@ -74,11 +74,11 @@ impl Sandbox for VedasSDK {
         // Left pane
         let left_pane_column = col!();
         let left_pane_container =
-            container!(units!(300), fill!(), left_pane_column).style(LeftPaneContainer);
+            container!(units!(250), fill!(), left_pane_column).style(LeftPaneContainer);
         // Right pane
         let right_pane_column = col!();
         let right_pane_container =
-            container!(units!(300), fill!(), right_pane_column).style(RightPaneContainer);
+            container!(units!(250), fill!(), right_pane_column).style(RightPaneContainer);
 
         let main_row = row!(units!(40), fill!())
             .push(left_side_bar_container)
