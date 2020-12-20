@@ -1,14 +1,12 @@
-use iced::{button, Element, Sandbox, Settings};
-use std::io::Error;
+use iced::{button, Element, Error, Sandbox, Settings};
 use vedas_core::*;
 
 fn main() -> Result<(), Error> {
-    Hello::run(Settings::default());
-    Ok(())
+    Hello::run(Settings::default())
 }
 
 component!(Hello: "Hello" => value: u64, inc_state: button::State, dec_state: button::State);
-message!(HelloMessage, IncBtn, DecBtn);
+message!(pub HelloMessage, IncBtn, DecBtn);
 
 impl Sandbox for Hello {
     type Message = HelloMessage;

@@ -7,12 +7,6 @@ macro_rules! component {
             #[derive(Default, Debug)]
             pub struct $name { $($element: $ty),* }
 
-            // impl $name {
-            //     f!(new, Self);
-            //     af_ref_self!(title, String);
-            //     af_ref_mut_self!(update,Self, user_name: String, email: String);
-            //     af_ref_mut_self!(view,Self, user_name: String, email: String);
-            // }
         }
     }
 
