@@ -20,5 +20,5 @@ name = "counter"
 path = "counter.rs"
 
 [[example]]
-name = "asm"
-path = "asm.rs"
+name = "select_list"
+path = "select_list.rs"
