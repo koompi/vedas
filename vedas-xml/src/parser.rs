@@ -1,16 +1,7 @@
-use treexml::Element;
+mod config;
+mod view;
+mod xml;
 
-pub fn xml_parser(doc: Element) {
-    let config = doc.find_child(|tag| tag.name == "Config");
-    match config {
-        Some(config) => match config.children.is_empty() {
-            true => println!("Generating Appplication with default settings..."),
-            false => println!("{:#?}", config.children),
-        },
-        None => {
-            println!("WARNING:");
-            println!("No configuration was provided!");
-            println!("Generating Appplication with default settings...");
-        }
-    }
-}
+pub use config::config_parser;
+pub use view::view_parser;
+pub use xml::xml_parser;

@@ -1,11 +1,12 @@
 pub mod parser;
 pub mod widgets;
 
-use std::{fs::File, io::prelude::*, io::Error, path::Path};
+use std::{fs::File, io::prelude::*, io::Error};
 use treexml::Document;
 
 fn main() {
-    let data = reader("data.xml");
+    let data = reader("gui.xml");
+
     match data {
         Ok(data) => match Document::parse(data.as_bytes()) {
             Ok(data) => match data.root {
@@ -18,11 +19,11 @@ fn main() {
     }
 }
 
-fn reader(fp: &str) -> Result<String, Error> {
-    let path = Path::new(fp);
-    let f = File::open(path);
+fn reader(path: &str) -> Result<String, Error> {
+    let file = File::open(path);
     let mut buf = String::new();
-    match f {
+
+    match file {
         Ok(mut file) => match file.read_to_string(&mut buf) {
             Ok(_) => Ok(buf.to_string()),
             Err(e) => Err(e),

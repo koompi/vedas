@@ -1,4 +1,4 @@
 [workspace]
-members = ["vedas-core", "vedas-xml", "examples"]
-default-members = ["vedas-core", "vedas-xml"]
+members = ["vedas-core", "vedas-xml", "vedas-utils", "examples"]
+default-members = ["vedas-core", "vedas-xml", "vedas-utils"]
 
