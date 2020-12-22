@@ -10,7 +10,7 @@ fn main() {
     match data {
         Ok(data) => match Document::parse(data.as_bytes()) {
             Ok(data) => match data.root {
-                Some(r) => parser::xml_parser(r),
+                Some(r) => parser::parse(r),
                 None => eprintln!("No data"),
             },
             Err(e) => eprintln!("{}", e),

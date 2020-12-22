@@ -3,6 +3,6 @@
         <Meta name="Open Store"/>
     </Config>
     <View>
-        
+        <Text>Hello</Text>
     </View>
 </App>
