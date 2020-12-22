@@ -2,16 +2,37 @@
     <Config>
         <Meta name="Open Store"/>
     </Config>
-    <View>
-        <Text>Hello</Text>
-        <Column>
-            <Text>Counter: {data}</Text>
-            <Button>Increment</Button>
-            <Button>Decrement</Button>
+    <View>      
+        <Container>
             <Column>
+                <Text>Counter: {data}</Text>
                 <Button>Increment</Button>
                 <Button>Decrement</Button>
+                <Column>
+                    <Button>
+                        <Text> {data.name} </Text>
+                    </Button>
+                    <Text> {data.name} </Text>
+                </Column>
+                <Container>
+                    <Text>Counter: {data}</Text>
+                </Container>
+                <Column>
+                    <Container>
+                        <Column>
+                            <Button>
+                                <Text> {data.name} </Text>
+                            </Button>
+                            <Text> {data.name} </Text>
+                        </Column>
+                    </Container>
+                    <Button>
+                        <Text> {data.name} </Text>
+                    </Button>
+                    <Text> {data.name} </Text>
+                </Column>
             </Column>
-        </Column>
+            
+        </Container>
     </View>
 </App>

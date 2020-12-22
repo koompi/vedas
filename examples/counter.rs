@@ -25,10 +25,34 @@ impl Sandbox for Hello {
         }
     });
     f_ref_mut_self!(self, view, Element<HelloMessage>, {
-        col!()
-            .push(btn!(&mut self.inc_state, "+").on_press(HelloMessage::IncBtn))
-            .push(text!(self.value))
-            .push(btn!(&mut self.dec_state, "-").on_press(HelloMessage::DecBtn))
-            .into()
+        // col!()
+        //     .push(btn!(&mut self.inc_state, "+").on_press(HelloMessage::IncBtn))
+        //     .push(text!(self.value))
+        //     .push(btn!(&mut self.dec_state, "-").on_press(HelloMessage::DecBtn))
+        //     .into()
+        // container!(col!(fill!())
+        //     .push(text!("Counter: {data}"))
+        //     .push(btn!(&mut self.inc_state, "+").on_press(HelloMessage::IncBtn))
+        //     .push(btn!(&mut self.dec_state, "+").on_press(HelloMessage::DecBtn)))
+        // .into()
+        container!(col!()
+            // .push(text!("Counter: {data}"))
+            // .push(btn!(&mut self.inc_state, "+"))
+            // .push(btn!(&mut self.dec_state, "+"))
+            // .push(
+            //     col!()
+            //         .push(btn!(&mut self.inc_state, "+"))
+            //         .push(text!(" {data.name} "))
+            // ) //
+            .push(container!(text!("Counter: {data}")))
+            .push(
+                col!()
+                    .push(container!(col!()
+                        .push(btn!(&mut self.inc_state, "+"))
+                        .push(text!(" {data.name} "))))
+                    .push(btn!(&mut self.dec_state, "+"))
+                    .push(text!(" {data.name} "))
+            ))
+        .into()
     });
 }
