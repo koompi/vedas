@@ -4,5 +4,14 @@
     </Config>
     <View>
         <Text>Hello</Text>
+        <Column>
+            <Text>Counter: {data}</Text>
+            <Button>Increment</Button>
+            <Button>Decrement</Button>
+            <Column>
+                <Button>Increment</Button>
+                <Button>Decrement</Button>
+            </Column>
+        </Column>
     </View>
 </App>

@@ -5,14 +5,18 @@ pub fn config_parser(doc: &Element) {
 
     match config {
         None => {
+            println!("-------------- Conf --------------");
             println!("WARNING:");
             println!("No configuration was provided!");
             println!("Generating Appplication with default settings...");
         }
         Some(config) => match config.children.is_empty() {
-            true => println!("Generating Appplication with default settings..."),
+            true => {
+                println!("-------------- Conf --------------");
+                println!("Generating Appplication with default settings...")
+            },
             false => {
-                println!("-------------- Configuration --------------");
+                println!("-------------- Conf --------------");
                 println!("{:?}", config.children);
             }
         },
