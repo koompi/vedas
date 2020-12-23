@@ -17,7 +17,8 @@ pub fn view_parser(doc: &Element) {
             false => {
                 println!("-------------- View --------------");
                 // traverse(view.clone(), 0, None)
-                traverse(&view, 0, "", "", "")
+                traverse(&view, 0, "", "", "");
+                println!();
             }
         },
     }
@@ -42,9 +43,9 @@ fn traverse(view: &Element, mut depth: usize, prepend: &str, append: &str, paren
                     } else {
                         println!("{}{}{:#?}{}", tab, prepend, child.name, append);
                     }
-                    println!("{})", tab);
+                    print!("{})", tab);
                     if parent == "Column" {
-                        println!("{})", tab);
+                        println!(")");
                     }
                 }
                 "Column" => {
@@ -52,13 +53,9 @@ fn traverse(view: &Element, mut depth: usize, prepend: &str, append: &str, paren
                         println!("{}{}col!()", tab, prepend);
                         traverse(child, depth + 1, ".push(", ")", "Column");
                         println!("{}{}", tab, append);
+                    } else {
+                        println!("{}{}col!(){}", tab, prepend, append);
                     }
-                    // else {
-                    //     println!("{}{}{:#?}{}", tab, prepend, child.name, append);
-                    // }
-                    // if parent == "Column" {
-                    //     println!("{})", tab);
-                    // }
                 }
                 "Text" => {
                     println!(

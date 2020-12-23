@@ -31,6 +31,10 @@
                     </Button>
                     <Text> {data.name} </Text>
                 </Column>
+                <Column></Column>
+                <Container>
+                    <Text>Counter: {data}</Text>
+                </Container>
             </Column>
             
         </Container>
