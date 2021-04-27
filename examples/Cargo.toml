@@ -6,9 +6,8 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-vedas_core = {path = "../vedas-core"}
-treexml = "0.7.0"
-iced = "0.2.0"
+# vedas_core = {path = "../vedas-core"}
+treexml = "0.7.0" 
 
 [[example]]
 name = "todo"

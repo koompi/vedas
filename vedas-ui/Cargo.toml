@@ -1,0 +1,46 @@
+[package]
+name = "vedas_ui"
+version = "0.1.0"
+authors = ["veasnama <maveasnatech@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package.metadata.docs.rs]
+all-features = true
+default-target = "wasm32-unknown-unknown"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+[features]
+full = [
+    "layouts",
+    "button",
+    "navbar",
+    "forms",
+    "card",
+    "modal",
+    "text",
+    "dropdown",
+    "spinner",
+    "carousel"
+]
+layouts = []
+button = []
+navbar = ["layouts"]
+forms = []
+card = ["layouts"]
+modal = []
+text = []
+dropdown = []
+spinner = []
+carousel = []
+
+[dependencies]
+wasm-bindgen = "0.2"
+yew = { version="0.17", features = ["web_sys"] }
+web-sys = {version = "0.3", features = ["HtmlDocument", "HtmlCollection", "CssStyleDeclaration", "Selection", "HtmlElement", "HtmlInputElement", "HtmlSelectElement", "Event", "Node","HtmlOptionsCollection","HtmlOptionElement", "DataTransfer"]}
+rand = "0.8.3"
+yew_assets= {version = "0.1", features = ["full"]}
+getrandom = {version = "0.2", features= ["js"]}
+wasm-bindgen-test = "0.3"
