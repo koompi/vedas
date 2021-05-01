@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // use iced::{button, text_input, Element, Sandbox, Settings};
 // use std::io::Error;
 // use vedas_core::*;
@@ -17,6 +18,25 @@
 //     InputChanged(String),
 //     AddTodo
 // );
+=======
+use iced::{button, text_input, Element, Error, Sandbox, Settings};
+use vedas_core::*;
+
+fn main() -> Result<(), Error> {
+    ToDoApp::run(Settings::default())
+}
+// Compnent
+component!(ToDoItem: "ToDoItem" => completed: bool, description: String,remove_btn: button::State);
+message!(pub ToDoItemMessage, ToggleItem(bool), RemoveItem(bool));
+// App
+component!(ToDoApp: "ToDoApp" => data: Vec<ToDoItem>, input_state: text_input::State, input_value: String, add_btn: button::State);
+message!(
+    pub ToDoAppMessage,
+    ToggleItemMessage(usize, ToDoItemMessage),
+    InputChanged(String),
+    AddTodo
+);
+>>>>>>> origin/brilliant
 
 // impl ToDoItem {
 //     f!(new, Self, { Self::default() });
