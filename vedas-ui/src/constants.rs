@@ -1,0 +1,1 @@
+pub const PREFIX_CLASS: &str = "ant";

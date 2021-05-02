@@ -1,4 +1,4 @@
-use crate::utils::{get_html_element_by_class, get_random_string};
+use crate::helper::{get_html_element_by_class, get_random_string};
 use wasm_bindgen_test::*;
 use yew::prelude::*;
 use yew::{utils, App};

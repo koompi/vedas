@@ -1,4 +1,3 @@
-extern crate getrandom;
 #[cfg(feature = "button")]
 pub mod button;
 #[cfg(feature = "card")]

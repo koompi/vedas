@@ -1,4 +1,12 @@
 [workspace]
-members = ["vedas-core", "vedas-ui",  "sdk", "examples", "examples/vedas-ui-demo"]
 default-members = ["vedas-core"]
+members = [
+    "vedas-core", 
+    "vedas-ui", 
+    "vedas-utils", 
+    "vedas-xml", 
+    "examples/vedas-ui-demo", 
+    "examples/showcase"
+]
+
 

@@ -12,6 +12,7 @@ default-target = "wasm32-unknown-unknown"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
+
 [features]
 full = [
     "layouts",
@@ -25,7 +26,7 @@ full = [
     "spinner",
     "carousel"
 ]
-layouts = []
+layouts = ["rand"]
 button = []
 navbar = ["layouts"]
 forms = []
@@ -39,8 +40,8 @@ carousel = []
 [dependencies]
 wasm-bindgen = "0.2"
 yew = { version="0.17", features = ["web_sys"] }
+yewtil = "0.3"
 web-sys = {version = "0.3", features = ["HtmlDocument", "HtmlCollection", "CssStyleDeclaration", "Selection", "HtmlElement", "HtmlInputElement", "HtmlSelectElement", "Event", "Node","HtmlOptionsCollection","HtmlOptionElement", "DataTransfer"]}
-rand = "0.8.3"
+rand = { version = "0.8.3", optional = true }
 yew_assets= {version = "0.1", features = ["full"]}
-getrandom = {version = "0.2", features= ["js"]}
 wasm-bindgen-test = "0.3"

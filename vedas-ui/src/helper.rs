@@ -1,18 +1,21 @@
-extern crate rand;
-extern crate wasm_bindgen;
-extern crate web_sys;
-use rand::{distributions::Alphanumeric, thread_rng, Rng};
-use wasm_bindgen::JsCast;
+use crate::constants::PREFIX_CLASS;
 use wasm_bindgen_test::*;
+
+#[cfg(feature = "layouts")]
+use rand::{distributions::Alphanumeric, thread_rng, Rng};
+#[cfg(feature = "layouts")]
 use web_sys::{window, HtmlElement};
+#[cfg(feature = "layouts")]
 use yew::utils;
 
+#[cfg(feature = "layouts")]
 pub fn create_style(style: String, value: String, wrap: String) {
     let element = get_html_element_by_class(&wrap, 0);
 
     element.style().set_property(&style, &value).unwrap();
 }
 
+#[cfg(feature = "layouts")]
 pub fn get_random_string(len: usize) -> String {
     thread_rng()
         .sample_iter(&Alphanumeric)
@@ -21,6 +24,7 @@ pub fn get_random_string(len: usize) -> String {
         .collect()
 }
 
+#[cfg(feature = "layouts")]
 pub fn get_html_element_by_class(class_name: &str, index: u32) -> HtmlElement {
     utils::document()
         .get_elements_by_class_name(class_name)
@@ -30,8 +34,33 @@ pub fn get_html_element_by_class(class_name: &str, index: u32) -> HtmlElement {
         .unwrap()
 }
 
+pub fn get_prefix_class(suffix_class: Option<&str>, custom_prefix_class: Option<&str>) -> String {
+    if let Some(custom_class) = custom_prefix_class {
+        String::from(custom_class)
+    } else if let Some(suffix_class) = suffix_class {
+        if !PREFIX_CLASS.is_empty() {
+            format!("{}-{}", PREFIX_CLASS, suffix_class)
+        } else {
+            suffix_class.to_string()
+        }
+    } else {
+        String::from(PREFIX_CLASS)
+    }
+}
+
+pub fn get_prefix_concat_with<S: ToString>(prefix_class: &str, suffix_class: S) -> String {
+    let suffix_class = suffix_class.to_string();
+
+    if !suffix_class.is_empty() {
+        format!("{}-{}", prefix_class, suffix_class)
+    } else {
+        String::default()
+    }
+}
+
 wasm_bindgen_test_configure!(run_in_browser);
 
+#[cfg(feature = "layouts")]
 #[wasm_bindgen_test]
 fn should_set_style_prop() {
     let body = window().unwrap().document().unwrap().body().unwrap();
@@ -68,6 +97,7 @@ fn should_set_style_prop() {
     assert_eq!(value, "10px");
 }
 
+#[cfg(feature = "layouts")]
 #[wasm_bindgen_test]
 fn should_generate_random_string() {
     let mut random_values: Vec<String> = vec![];

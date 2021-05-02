@@ -1,4 +1,4 @@
-use crate::utils::{create_style, get_random_string};
+use crate::helper::{create_style, get_random_string};
 use wasm_bindgen_test::*;
 use web_sys::window;
 use yew::prelude::*;
