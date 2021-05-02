@@ -1,0 +1,19 @@
+{
+  "name": "todo-yew",
+  "version": "1.0.0",
+  "main": "index.html",
+  "keywords": [],
+  "author": "hangleang <hangleang127@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "antd": "^4.15.3"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "description": ""
+}
