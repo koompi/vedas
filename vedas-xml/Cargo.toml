@@ -1,9 +1,12 @@
 [package]
-name = "vedas_core"
+name = "vedas_xml"
 version = "0.1.0"
 authors = ["mrrbrilliant <mrrbrilliantwork@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
 [dependencies]
-treexml = "0.7.0"
+treexml = "0.7"
+iced = "0.2"
+vedas_core = {path="../vedas-core"}
