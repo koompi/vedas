@@ -12,7 +12,7 @@ pub struct ButtonGroup {
 #[derive(Debug, Clone, PartialEq, Properties)]
 pub struct Props {
     #[prop_or_default]
-    pub size: Option<Size>,
+    pub size: Size,
     #[prop_or_default]
     pub button_props: Option<button::Props>,
     #[prop_or_default]
@@ -42,10 +42,10 @@ impl Component for ButtonGroup {
 
     fn view(&self) -> Html {
         let prefix_class = get_prefix_class(Some("btn-group"), None);
-        let mut classes = vec![prefix_class.clone()];
-        if let Some(size) = self.props.size {
-            classes.push(get_prefix_concat_with(&prefix_class, size))
-        }
+        let mut classes = vec![
+            prefix_class.clone(),
+            get_prefix_concat_with(&prefix_class, size),
+        ];
         classes.push(self.props.class.clone());
 
         html! {

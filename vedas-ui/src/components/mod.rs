@@ -18,3 +18,5 @@ pub mod navbar;
 pub mod spinner;
 #[cfg(feature = "text")]
 pub mod text;
+#[cfg(feature = "typography")]
+pub mod typography;

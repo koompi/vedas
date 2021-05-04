@@ -18,6 +18,12 @@ impl Target {
     ];
 }
 
+impl Default for Target {
+    fn default() -> Self {
+        Self::Default
+    }
+}
+
 impl ToString for Target {
     fn to_string(&self) -> String {
         use Target::*;

@@ -14,6 +14,12 @@ impl Size {
     ];
 }
 
+impl Default for Size {
+    fn default() -> Self {
+        Self::Middle
+    }
+}
+
 impl ToString for Size {
     fn to_string(&self) -> String {
         use Size::*;

@@ -22,6 +22,12 @@ impl Color {
     ];
 }
 
+impl Default for Color {
+    fn default() -> Self {
+        Self::Default
+    }
+}
+
 impl ToString for Color {
     fn to_string(&self) -> String {
         use Color::*;

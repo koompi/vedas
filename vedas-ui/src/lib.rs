@@ -45,3 +45,5 @@ pub use components::navbar::{
 pub use components::spinner::{self, Spinner};
 #[cfg(feature = "text")]
 pub use components::text::{self, Text};
+#[cfg(feature = "text")]
+pub use components::typography::{self, Title, Text, Paragraph, Link};

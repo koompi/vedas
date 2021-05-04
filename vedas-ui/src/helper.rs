@@ -34,12 +34,12 @@ pub fn get_html_element_by_class(class_name: &str, index: u32) -> HtmlElement {
         .unwrap()
 }
 
-pub fn get_prefix_class(suffix_class: Option<&str>, custom_prefix_class: Option<&str>) -> String {
+pub fn get_prefix_class<S: ToString>(suffix_class: Option<S>, custom_prefix_class: Option<S>) -> String {
     if let Some(custom_class) = custom_prefix_class {
-        String::from(custom_class)
+        custom_class.to_string()
     } else if let Some(suffix_class) = suffix_class {
         if !PREFIX_CLASS.is_empty() {
-            format!("{}-{}", PREFIX_CLASS, suffix_class)
+            format!("{}-{}", PREFIX_CLASS, suffix_class.to_string())
         } else {
             suffix_class.to_string()
         }

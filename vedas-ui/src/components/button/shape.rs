@@ -14,6 +14,12 @@ impl Shape {
     ];
 }
 
+impl Default for Shape {
+    fn default() -> Self {
+        Self::Default
+    }
+}
+
 impl ToString for Shape {
     fn to_string(&self) -> String {
         use Shape::*;

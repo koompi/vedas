@@ -1,10 +1,7 @@
-use super::style::Style;
-use super::button_type::Type;
-use super::shape::Shape;
-use super::target::Target;
+use super::{Style, Type, Shape};
 
 // use std::time::Duration;
-use crate::utils::{Color, Size, Wave};
+use crate::utils::{Color, Size, Target, Wave};
 use crate::helper::{get_prefix_class, get_prefix_concat_with};
 use yew::prelude::*;
 // use yew::services::timeout::{TimeoutService, TimeoutTask};
@@ -16,15 +13,15 @@ pub struct Button {
     // task: Option<TimeoutTask>
 }
 
-#[derive(Debug, Clone, PartialEq, Properties)]
+#[derive(Debug, Clone, Default, PartialEq, Properties)]
 pub struct Props {
-    #[prop_or(Style::Default)]
+    #[prop_or_default]
     pub style: Style,
-    #[prop_or(Color::Default)]
+    #[prop_or_default]
     pub color: Color,
-    #[prop_or(Shape::Default)]
+    #[prop_or_default]
     pub shape: Shape,
-    #[prop_or(Size::Middle)]
+    #[prop_or_default]
     pub size: Size,
     #[prop_or_default]
     pub loading: Option<u32>,
@@ -32,10 +29,10 @@ pub struct Props {
     pub block: bool,
     #[prop_or_default]
     pub disabled: bool,
-    #[prop_or(ButtonType::NativeProps(Type::Button))]
+    #[prop_or_default]
     pub kind: ButtonType,
     #[prop_or_default]
-    pub class: String,
+    pub class: Classes,
     #[prop_or_default]
     pub id: String,
     #[prop_or_default]
@@ -43,15 +40,15 @@ pub struct Props {
     #[prop_or_default]
     pub node_ref: NodeRef,
     #[prop_or_default]
-    pub on_click: Option<Callback<MouseEvent>>,
+    pub on_click: Callback<MouseEvent>,
     pub children: Children,
 }
 
-#[derive(Debug, Clone, PartialEq, Properties)]
+#[derive(Debug, Clone, Default, PartialEq, Properties)]
 pub struct AnchorProps {
     #[prop_or_default]
     pub href: String,
-    #[prop_or(Target::Default)]
+    #[prop_or_default]
     pub target: Target,
 }
 
@@ -59,6 +56,12 @@ pub struct AnchorProps {
 pub enum ButtonType {
     NativeProps(Type),
     AnchorProps(AnchorProps),
+}
+
+impl Default for ButtonType {
+    fn default() -> Self {
+        Self::NativeProps(Type::default())
+    }
 }
 
 pub enum Msg {
@@ -88,10 +91,8 @@ impl Component for Button {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::Clicked(mouse_event) => if let Some(cb) = &self.props.on_click {
-                if !self.props.disabled {
-                    cb.emit(mouse_event)
-                }
+            Msg::Clicked(mouse_event) => if !self.props.disabled {
+                self.props.on_click.emit(mouse_event)
             },
             // Msg::StopLoading => self.task = None
         };
@@ -146,7 +147,7 @@ impl Component for Button {
                     ref=node_ref.clone()
                     href=anchor_props.href
                     target=anchor_props.target.to_string()
-                    onclick=self.link.callback(|e| Msg::Clicked(e))
+                    onclick=self.link.callback(Msg::Clicked)
                 > { children.clone() }
                 </a>
             },
@@ -159,7 +160,7 @@ impl Component for Button {
                         ref=node_ref.clone()
                         type=html_type
                         disabled=disabled
-                        onclick=self.link.callback(|e| Msg::Clicked(e))
+                        onclick=self.link.callback(Msg::Clicked)
                     > { children.clone() }
                     </button>
                 };

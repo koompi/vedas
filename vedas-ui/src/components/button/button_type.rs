@@ -14,6 +14,12 @@ impl Type {
     ];
 }
 
+impl Default for Type {
+    fn default() -> Self {
+        Self::Button
+    }
+}
+
 impl ToString for Type {
     fn to_string(&self) -> String {
         use Type::*;

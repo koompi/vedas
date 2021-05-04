@@ -27,6 +27,12 @@ impl Style {
     }
 }
 
+impl Default for Style {
+    fn default() -> Self {
+        Self::Default
+    }
+}
+
 impl ToString for Style {
     fn to_string(&self) -> String {
         use Style::*;
