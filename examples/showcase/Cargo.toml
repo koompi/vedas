@@ -8,4 +8,4 @@ edition = "2018"
 
 [dependencies]
 yew = "0.17"
-vedas_ui = { path = "../../vedas-ui", features = ["button"] }
+vedas_ui = { path = "../../vedas-ui", features = ["button", "text"] }
