@@ -156,7 +156,6 @@ impl Component for Button {
         self.props = ButtonProps::from(props);
         true
     }
-
     fn view(&self) -> Html {
         html! {
             <button

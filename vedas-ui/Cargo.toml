@@ -23,7 +23,8 @@ full = [
     "text",
     "dropdown",
     "spinner",
-    "carousel"
+    "carousel",
+    "tabs"
 ]
 layouts = []
 button = []
@@ -35,12 +36,14 @@ text = []
 dropdown = []
 spinner = []
 carousel = []
-
+tabs = []
 [dependencies]
 wasm-bindgen = "0.2"
 yew = { version="0.17", features = ["web_sys"] }
-web-sys = {version = "0.3", features = ["HtmlDocument", "HtmlCollection", "CssStyleDeclaration", "Selection", "HtmlElement", "HtmlInputElement", "HtmlSelectElement", "Event", "Node","HtmlOptionsCollection","HtmlOptionElement", "DataTransfer"]}
+web-sys = {version = "0.3", features = ["HtmlDocument", "HtmlCollection", "CssStyleDeclaration", "Selection", "HtmlElement", "HtmlInputElement", "HtmlSelectElement", "Event", "Node","HtmlOptionsCollection","HtmlOptionElement", "DataTransfer", "CustomEvent"]}
 rand = "0.8.3"
 yew_assets= {version = "0.1", features = ["full"]}
 getrandom = {version = "0.2", features= ["js"]}
 wasm-bindgen-test = "0.3"
+gloo = "0.2"
+uuid = { version = "0.8", features = ["v4", "wasm-bindgen"] }

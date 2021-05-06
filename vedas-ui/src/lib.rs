@@ -22,3 +22,9 @@ pub use components::navbar;
 pub use components::spinner;
 #[cfg(feature = "text")]
 pub use components::text;
+#[cfg(feature = "tabs")]
+pub use components::tabs;
+pub use components::toggle;
+pub use components::slider;
+pub use components::tooltip;
+pub use components::toast;

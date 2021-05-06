@@ -32,6 +32,7 @@ pub enum Size {
     Small,
     Medium,
     Big,
+    Large
 }
 
 /// Standars button styles
@@ -47,6 +48,7 @@ pub fn get_size(size: Size) -> String {
         Size::Small => String::from("small"),
         Size::Medium => String::from("medium"),
         Size::Big => String::from("big"),
+        Size::Large => String::from("large")
     }
 }
 

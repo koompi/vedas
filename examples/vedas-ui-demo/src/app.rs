@@ -13,6 +13,8 @@ use vedas_ui::{
     styles::{Palette, Size, Style},
     tabs::tabs::Tabs,
     toggle::Switch,
+    tooltip::Tooltip,
+    toast::Toast
 };
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
@@ -21,12 +23,12 @@ use yew::prelude::*;
 use yew::services::ConsoleService;
 use yew::utils::document;
 use yew::KeyboardEvent;
-
 use yew_router::{prelude::*, route::Route, switch::Permissive};
 pub struct App {
     link: ComponentLink<Self>,
     show_modal: bool,
     slider_val: String,
+    is_show: bool
 }
 
 #[derive(Switch, Debug, Clone)]
@@ -70,6 +72,7 @@ pub enum HelloMsg {
     OnToggle(bool),
     OnSlider(CustomEvent),
     OnInput(String),
+    OnShowToast
 }
 impl Component for App {
     type Message = HelloMsg;
@@ -80,6 +83,7 @@ impl Component for App {
             link,
             show_modal: false,
             slider_val: String::new(),
+            is_show: false
         }
     }
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
@@ -102,6 +106,10 @@ impl Component for App {
                 }
                 true
             }
+            HelloMsg::OnShowToast => {
+                self.is_show = true;
+                true
+            }
             HelloMsg::OnInput(val) => {
                 self.slider_val = val;
                 return false;
@@ -114,6 +122,7 @@ impl Component for App {
                 ConsoleService::log(&format!("Slider: {:?}", val.current_target()));
                 false
             }
+            
             HelloMsg::OnSelect(e) => false,
             HelloMsg::OpenModal => {
                 body_style.set_property("overflow", "hidden").unwrap();
@@ -164,11 +173,21 @@ impl Component for App {
                         button_palette=Palette::Danger
                         button_style=Style::Light
                         button_size=Size::Big > {"Show Message"} </Button>
-                        <Tabs transition=false, on_select=self.link.callback(move |e| HelloMsg::OnSelect(e))>
-                            <div> <span class="text">{"Hello"} </span></div>
-                        </Tabs>
+                        // <Tabs transition=false, on_select=self.link.callback(move |e| HelloMsg::OnSelect(e))>
+                        //     <div> <span class="text">{"Hello"} </span></div>
+                        // </Tabs>
+
                         <Switch checked=true  on_change=self.link.callback(HelloMsg::OnToggle) label="hello world" />
                         <Slider  on_input=self.link.callback(HelloMsg::OnInput) on_change=self.link.callback(HelloMsg::OnSlider)/>
+                        <br/>
+                        <Tooltip  text="Top level tooltip"><button class="button"> {"Tooltip"} </button></Tooltip>
+                        <Toast timeout_ms=3000 show={self.is_show} header="Hello Wrold" body="Hello World is a computer program used to test"/>
+                        <Button
+                        onclick_signal=self.link.callback(move |_| HelloMsg::OnShowToast)
+                        button_palette=Palette::Danger
+                        button_style=Style::Light
+                        button_size=Size::Big > {"Show Toast"} </Button>
+
                     </Container>
                 }
     }

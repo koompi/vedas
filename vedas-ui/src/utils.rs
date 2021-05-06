@@ -6,7 +6,6 @@ use wasm_bindgen::JsCast;
 use wasm_bindgen_test::*;
 use web_sys::{window, HtmlElement};
 use yew::utils;
-
 pub fn create_style(style: String, value: String, wrap: String) {
     let element = get_html_element_by_class(&wrap, 0);
 
@@ -67,7 +66,9 @@ fn should_set_style_prop() {
 
     assert_eq!(value, "10px");
 }
-
+pub fn random_id() -> String {
+    uuid::Uuid::new_v4().to_string()
+}
 #[wasm_bindgen_test]
 fn should_generate_random_string() {
     let mut random_values: Vec<String> = vec![];
