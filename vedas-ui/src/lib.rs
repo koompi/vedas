@@ -28,3 +28,5 @@ pub use components::toggle;
 pub use components::slider;
 pub use components::tooltip;
 pub use components::toast;
+pub use components::accordion::accordion;
+pub use components::accordion::accordion_item;

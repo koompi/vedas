@@ -31,6 +31,7 @@ pub mod text;
 pub mod toggle;
 pub mod tooltip;
 pub mod toast;
+pub mod accordion;
 pub fn bool_to_option(value: bool) -> Option<Cow<'static, str>> {
     value.then(|| Cow::from("true"))
 }

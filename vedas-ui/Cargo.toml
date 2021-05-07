@@ -40,7 +40,7 @@ tabs = []
 [dependencies]
 wasm-bindgen = "0.2"
 yew = { version="0.17", features = ["web_sys"] }
-web-sys = {version = "0.3", features = ["HtmlDocument", "HtmlCollection", "CssStyleDeclaration", "Selection", "HtmlElement", "HtmlInputElement", "HtmlSelectElement", "Event", "Node","HtmlOptionsCollection","HtmlOptionElement", "DataTransfer", "CustomEvent"]}
+web-sys = {version = "0.3", features = ["HtmlDocument", "HtmlCollection", "CssStyleDeclaration", "HtmlButtonElement", "Selection", "HtmlElement", "HtmlInputElement", "HtmlSelectElement", "Event", "Node","HtmlOptionsCollection","HtmlOptionElement", "DataTransfer", "CustomEvent", "Document", "NodeList"]}
 rand = "0.8.3"
 yew_assets= {version = "0.1", features = ["full"]}
 getrandom = {version = "0.2", features= ["js"]}

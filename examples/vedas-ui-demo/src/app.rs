@@ -3,6 +3,8 @@
 //     HomePage, LayoutsPage, ModalPage, NavbarPage, SpinnerPage, TextPage,
 // };
 use vedas_ui::{
+    accordion::Accordion,
+    accordion_item::AccordionItem,
     button::Button,
     layouts::{
         container::{AlignItems, Container, Direction, Mode, Wrap},
@@ -12,9 +14,9 @@ use vedas_ui::{
     slider::Slider,
     styles::{Palette, Size, Style},
     tabs::tabs::Tabs,
+    toast::Toast,
     toggle::Switch,
     tooltip::Tooltip,
-    toast::Toast
 };
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
@@ -28,7 +30,7 @@ pub struct App {
     link: ComponentLink<Self>,
     show_modal: bool,
     slider_val: String,
-    is_show: bool
+    is_show: bool,
 }
 
 #[derive(Switch, Debug, Clone)]
@@ -72,7 +74,7 @@ pub enum HelloMsg {
     OnToggle(bool),
     OnSlider(CustomEvent),
     OnInput(String),
-    OnShowToast
+    OnShowToast,
 }
 impl Component for App {
     type Message = HelloMsg;
@@ -83,7 +85,7 @@ impl Component for App {
             link,
             show_modal: false,
             slider_val: String::new(),
-            is_show: false
+            is_show: false,
         }
     }
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
@@ -122,7 +124,6 @@ impl Component for App {
                 ConsoleService::log(&format!("Slider: {:?}", val.current_target()));
                 false
             }
-            
             HelloMsg::OnSelect(e) => false,
             HelloMsg::OpenModal => {
                 body_style.set_property("overflow", "hidden").unwrap();
@@ -147,48 +148,60 @@ impl Component for App {
     }
     fn view(&self) -> Html {
         html! {
-                    <Container direction=Direction::Row wrap=Wrap::Wrap>
-                    <Modal
-            header=html!{
-                <b>{"Standard modal"}</b>
-            }
-            header_palette=Palette::Link
-            body=html!{
-                <div class="body-content">
-                    <p>{"this is a modal example"}</p>
-                    <Button
-                        button_palette= Palette::Info
-                        onclick_signal= self.link.callback(|_| HelloMsg::CloseModal)
-                    >{"Accept"}</Button>
-                </div>
-            }
-            body_style=Style::Outline
-            body_palette=Palette::Link
-            is_open=self.show_modal
-            onclick_signal= self.link.callback(|_| HelloMsg::CloseModal)
-            onkeydown_signal= self.link.callback(HelloMsg::CloseModalByKb)
-        />
-                        <Button
-                        onclick_signal=self.link.callback(move |_| HelloMsg::OpenModal)
-                        button_palette=Palette::Danger
-                        button_style=Style::Light
-                        button_size=Size::Big > {"Show Message"} </Button>
-                        // <Tabs transition=false, on_select=self.link.callback(move |e| HelloMsg::OnSelect(e))>
-                        //     <div> <span class="text">{"Hello"} </span></div>
-                        // </Tabs>
-
-                        <Switch checked=true  on_change=self.link.callback(HelloMsg::OnToggle) label="hello world" />
-                        <Slider  on_input=self.link.callback(HelloMsg::OnInput) on_change=self.link.callback(HelloMsg::OnSlider)/>
-                        <br/>
-                        <Tooltip  text="Top level tooltip"><button class="button"> {"Tooltip"} </button></Tooltip>
-                        <Toast timeout_ms=3000 show={self.is_show} header="Hello Wrold" body="Hello World is a computer program used to test"/>
-                        <Button
-                        onclick_signal=self.link.callback(move |_| HelloMsg::OnShowToast)
-                        button_palette=Palette::Danger
-                        button_style=Style::Light
-                        button_size=Size::Big > {"Show Toast"} </Button>
-
-                    </Container>
+         <div>
+                        <Container direction=Direction::Row wrap=Wrap::Wrap>
+                        <Modal
+                header=html!{
+                    <b>{"Standard modal"}</b>
                 }
+                header_palette=Palette::Link
+                body=html!{
+                    <div class="body-content">
+                        <p>{"this is a modal example"}</p>
+                        <Button
+                            button_palette= Palette::Info
+                            onclick_signal= self.link.callback(|_| HelloMsg::CloseModal)
+                        >{"Accept"}</Button>
+                    </div>
+                }
+                body_style=Style::Outline
+                body_palette=Palette::Link
+                is_open=self.show_modal
+                onclick_signal= self.link.callback(|_| HelloMsg::CloseModal)
+                onkeydown_signal= self.link.callback(HelloMsg::CloseModalByKb)
+            />
+                            <Button
+                            onclick_signal=self.link.callback(move |_| HelloMsg::OpenModal)
+                            button_palette=Palette::Danger
+                            button_style=Style::Light
+                            button_size=Size::Big > {"Show Message"} </Button>
+                            // <Tabs transition=false, on_select=self.link.callback(move |e| HelloMsg::OnSelect(e))>
+                            //     <div> <span class="text">{"Hello"} </span></div>
+                            // </Tabs>
+
+                            <Switch checked=true  on_change=self.link.callback(HelloMsg::OnToggle) label="hello world" />
+                            <Slider  on_input=self.link.callback(HelloMsg::OnInput) on_change=self.link.callback(HelloMsg::OnSlider)/>
+                            <br/>
+                            <Tooltip  text="Top level tooltip"><button class="button"> {"Tooltip"} </button></Tooltip>
+                            <Toast timeout_ms=3000 show={self.is_show} header="Hello Wrold" body="Hello World is a computer program used to test"/>
+                            <Button
+                            onclick_signal=self.link.callback(move |_| HelloMsg::OnShowToast)
+                            button_palette=Palette::Danger
+                            button_style=Style::Light
+                            button_size=Size::Big > {"Show Toast"} </Button><br/>
+
+
+                        </Container>
+                        <Accordion>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                                <AccordionItem title="What is your name?" content="My Name is Ma veasna"/>
+                        </Accordion>
+                         </div>
+        }
     }
 }
